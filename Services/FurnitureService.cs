@@ -1,8 +1,10 @@
 ﻿using CsvHelper;
+using CsvHelper.Configuration;
 using KitchenProject.Models;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
+using System.IO;
 using System.Linq;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
@@ -12,45 +14,42 @@ namespace KitchenProject.Services
 {
     public class FurnitureService
     {
-        public List<Neshto> neshtos = new List<Neshto>();
-        
-        public List<Furniture> furnitures = new List<Furniture>()
+        public void SaveInFile(string OrderName,List<Furniture> furnitures)
         {
-            new Furniture
+            var scvPath = Path.Combine(Environment.CurrentDirectory + "/Поръчки", OrderName + ".scv");
+            if (!File.Exists(scvPath))
             {
-                Name = "test",
-                X= 10
-
-            },
-            new Furniture
-            {
-                Name = "test2",
-                X= 10
-            },
-            new Furniture
-            {
-                Name = "test3",
-                X= 10
-            }
-        };
-        
-        
-        public void SaveInFile()
-        {
-            var scvPath = Path.Combine(Environment.CurrentDirectory, $"1.scv");
-            using(var sr = new StreamWriter(scvPath))
-            {
-                using(var scvWriter = new CsvWriter(sr,CultureInfo.InvariantCulture))
+                using (var sr = new StreamWriter(scvPath))
                 {
-                    scvWriter.WriteRecords(furnitures);
+                    using (var scvWriter = new CsvWriter(sr, CultureInfo.InvariantCulture))
+                    {
+                        scvWriter.WriteRecords(furnitures);
+                    }
                 }
             }
+            else
+            {
+                var config = new CsvConfiguration(CultureInfo.InvariantCulture)
+                {
+                    HasHeaderRecord = false,
+                };
+
+                using (var stream = File.Open(scvPath, FileMode.Append))
+                using (var sr = new StreamWriter(stream))
+                {
+                    using (var scvWriter = new CsvWriter(sr, config))
+                    {
+                        scvWriter.WriteRecords(furnitures);
+                    }
+                }
+            }
+            
         }
 
         public List<Furniture> ReadFile(string fileName)
         {
             
-            var scvPath = Path.Combine(Environment.CurrentDirectory, fileName+$".scv");
+            var scvPath = Path.Combine(Environment.CurrentDirectory+ "/Поръчки",  fileName +$".scv");
             using (var sr  = new StreamReader(scvPath)) 
             {
                 using(var csvReader = new CsvReader(sr, CultureInfo.InvariantCulture))
