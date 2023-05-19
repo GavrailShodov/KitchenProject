@@ -50,6 +50,9 @@
             label5 = new Label();
             FurnitureNameBox = new TextBox();
             OutputBox = new TextBox();
+            listBox1 = new ListBox();
+            TypesBox = new ComboBox();
+            label6 = new Label();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)furnitureBindingSource2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)furnitureBindingSource1).BeginInit();
@@ -58,10 +61,10 @@
             // 
             // EnterButton
             // 
-            EnterButton.Location = new Point(370, 36);
-            EnterButton.Margin = new Padding(3, 2, 3, 2);
+            EnterButton.Location = new Point(634, 72);
+            EnterButton.Margin = new Padding(5, 4, 5, 4);
             EnterButton.Name = "EnterButton";
-            EnterButton.Size = new Size(82, 22);
+            EnterButton.Size = new Size(141, 44);
             EnterButton.TabIndex = 0;
             EnterButton.Text = "Enter";
             EnterButton.UseVisualStyleBackColor = true;
@@ -74,12 +77,12 @@
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridView1.Columns.AddRange(new DataGridViewColumn[] { orderNameDataGridViewTextBoxColumn, nameDataGridViewTextBoxColumn, heightDataGridViewTextBoxColumn, widthDataGridViewTextBoxColumn, depthDataGridViewTextBoxColumn });
             dataGridView1.DataSource = furnitureBindingSource2;
-            dataGridView1.Location = new Point(12, 379);
-            dataGridView1.Margin = new Padding(3, 2, 3, 2);
+            dataGridView1.Location = new Point(21, 758);
+            dataGridView1.Margin = new Padding(5, 4, 5, 4);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.RowHeadersWidth = 51;
             dataGridView1.RowTemplate.Height = 29;
-            dataGridView1.Size = new Size(608, 141);
+            dataGridView1.Size = new Size(1042, 282);
             dataGridView1.TabIndex = 1;
             dataGridView1.CellContentClick += dataGridView1_CellContentClick;
             // 
@@ -123,105 +126,147 @@
             // 
             // HeightBox
             // 
-            HeightBox.Location = new Point(12, 128);
-            HeightBox.Margin = new Padding(3, 2, 3, 2);
+            HeightBox.Location = new Point(21, 256);
+            HeightBox.Margin = new Padding(5, 4, 5, 4);
             HeightBox.Name = "HeightBox";
-            HeightBox.Size = new Size(110, 23);
+            HeightBox.Size = new Size(186, 35);
             HeightBox.TabIndex = 3;
             // 
             // WidthBox
             // 
-            WidthBox.Location = new Point(172, 128);
-            WidthBox.Margin = new Padding(3, 2, 3, 2);
+            WidthBox.Location = new Point(295, 256);
+            WidthBox.Margin = new Padding(5, 4, 5, 4);
             WidthBox.Name = "WidthBox";
-            WidthBox.Size = new Size(110, 23);
+            WidthBox.Size = new Size(186, 35);
             WidthBox.TabIndex = 4;
             WidthBox.TextChanged += textBox2_TextChanged;
             // 
             // orderNameBox
             // 
-            orderNameBox.Location = new Point(12, 36);
-            orderNameBox.Margin = new Padding(3, 2, 3, 2);
+            orderNameBox.Location = new Point(21, 72);
+            orderNameBox.Margin = new Padding(5, 4, 5, 4);
             orderNameBox.Name = "orderNameBox";
-            orderNameBox.Size = new Size(110, 23);
+            orderNameBox.Size = new Size(186, 35);
             orderNameBox.TabIndex = 5;
             // 
             // DepthBox
             // 
-            DepthBox.Location = new Point(342, 128);
-            DepthBox.Margin = new Padding(3, 2, 3, 2);
+            DepthBox.Location = new Point(586, 256);
+            DepthBox.Margin = new Padding(5, 4, 5, 4);
             DepthBox.Name = "DepthBox";
-            DepthBox.Size = new Size(110, 23);
+            DepthBox.Size = new Size(186, 35);
             DepthBox.TabIndex = 6;
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(12, 19);
+            label1.Location = new Point(21, 38);
+            label1.Margin = new Padding(5, 0, 5, 0);
             label1.Name = "label1";
-            label1.Size = new Size(97, 15);
+            label1.Size = new Size(175, 30);
             label1.TabIndex = 7;
             label1.Text = "Име на поръчка";
             // 
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(12, 111);
+            label2.Location = new Point(21, 222);
+            label2.Margin = new Padding(5, 0, 5, 0);
             label2.Name = "label2";
-            label2.Size = new Size(61, 15);
+            label2.Size = new Size(110, 30);
             label2.TabIndex = 8;
             label2.Text = "Височина";
             // 
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(172, 111);
+            label3.Location = new Point(295, 222);
+            label3.Margin = new Padding(5, 0, 5, 0);
             label3.Name = "label3";
-            label3.Size = new Size(52, 15);
+            label3.Size = new Size(96, 30);
             label3.TabIndex = 9;
             label3.Text = "Ширина";
             // 
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(342, 111);
+            label4.Location = new Point(586, 222);
+            label4.Margin = new Padding(5, 0, 5, 0);
             label4.Name = "label4";
-            label4.Size = new Size(70, 15);
+            label4.Size = new Size(126, 30);
             label4.TabIndex = 10;
             label4.Text = "Дълбочина";
             // 
             // label5
             // 
             label5.AutoSize = true;
-            label5.Location = new Point(12, 69);
+            label5.Location = new Point(295, 134);
+            label5.Margin = new Padding(5, 0, 5, 0);
             label5.Name = "label5";
-            label5.Size = new Size(65, 15);
+            label5.Size = new Size(118, 30);
             label5.TabIndex = 11;
             label5.Text = "Вид мебел";
             // 
             // FurnitureNameBox
             // 
-            FurnitureNameBox.Location = new Point(12, 86);
-            FurnitureNameBox.Margin = new Padding(3, 2, 3, 2);
+            FurnitureNameBox.Location = new Point(21, 172);
+            FurnitureNameBox.Margin = new Padding(5, 4, 5, 4);
             FurnitureNameBox.Name = "FurnitureNameBox";
-            FurnitureNameBox.Size = new Size(110, 23);
+            FurnitureNameBox.Size = new Size(186, 35);
             FurnitureNameBox.TabIndex = 12;
             // 
             // OutputBox
             // 
-            OutputBox.Location = new Point(664, 19);
-            OutputBox.Margin = new Padding(3, 2, 3, 2);
+            OutputBox.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            OutputBox.Location = new Point(1138, 38);
+            OutputBox.Margin = new Padding(5, 4, 5, 4);
             OutputBox.Multiline = true;
             OutputBox.Name = "OutputBox";
             OutputBox.ReadOnly = true;
-            OutputBox.Size = new Size(777, 501);
+            OutputBox.ScrollBars = ScrollBars.Vertical;
+            OutputBox.Size = new Size(264, 569);
             OutputBox.TabIndex = 14;
+            // 
+            // listBox1
+            // 
+            listBox1.FormattingEnabled = true;
+            listBox1.ItemHeight = 30;
+            listBox1.Location = new Point(586, 326);
+            listBox1.Margin = new Padding(5, 6, 5, 6);
+            listBox1.Name = "listBox1";
+            listBox1.Size = new Size(203, 184);
+            listBox1.TabIndex = 15;
+            // 
+            // TypesBox
+            // 
+            TypesBox.DropDownStyle = ComboBoxStyle.DropDownList;
+            TypesBox.FormattingEnabled = true;
+            TypesBox.Items.AddRange(new object[] { "Обикновен шкаф" });
+            TypesBox.Location = new Point(295, 170);
+            TypesBox.Margin = new Padding(5, 6, 5, 6);
+            TypesBox.Name = "TypesBox";
+            TypesBox.Size = new Size(186, 38);
+            TypesBox.TabIndex = 16;
+            // 
+            // label6
+            // 
+            label6.AutoSize = true;
+            label6.Location = new Point(21, 138);
+            label6.Margin = new Padding(5, 0, 5, 0);
+            label6.Name = "label6";
+            label6.Size = new Size(122, 30);
+            label6.TabIndex = 17;
+            label6.Text = "Име мебел";
             // 
             // Form1
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(12F, 30F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1453, 569);
+            AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            ClientSize = new Size(1436, 578);
+            Controls.Add(label6);
+            Controls.Add(TypesBox);
+            Controls.Add(listBox1);
             Controls.Add(OutputBox);
             Controls.Add(FurnitureNameBox);
             Controls.Add(label5);
@@ -235,10 +280,11 @@
             Controls.Add(HeightBox);
             Controls.Add(dataGridView1);
             Controls.Add(EnterButton);
-            Margin = new Padding(3, 2, 3, 2);
+            Font = new Font("Yu Gothic UI Semibold", 15.75F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point);
+            Margin = new Padding(5, 4, 5, 4);
             Name = "Form1";
             Text = "Form1";
-            WindowState = FormWindowState.Maximized;
+            //Load += Form1_Load;
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             ((System.ComponentModel.ISupportInitialize)furnitureBindingSource2).EndInit();
             ((System.ComponentModel.ISupportInitialize)furnitureBindingSource1).EndInit();
@@ -275,6 +321,9 @@
         private DataGridViewTextBoxColumn widthDataGridViewTextBoxColumn;
         private DataGridViewTextBoxColumn depthDataGridViewTextBoxColumn;
         private BindingSource furnitureBindingSource2;
-        private TextBox OutputBox;
+        private ListBox listBox1;
+        private ComboBox TypesBox;
+        private Label label6;
+        public TextBox OutputBox;
     }
 }

@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace KitchenProject.Services
 {
-    public class FurnitureService
+    public class FileService
     {
         public void SaveInFile(string OrderName,List<Furniture> furnitures)
         {

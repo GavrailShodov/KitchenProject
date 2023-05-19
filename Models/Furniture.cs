@@ -10,6 +10,7 @@ namespace KitchenProject.Models
     {
         public string OrderName { get; set; }
         public string Name { get; set; }
+        public string Type { get; set; }
         public double Height { get; set; }
         public double Width { get; set; }
         public double Depth { get; set; }
