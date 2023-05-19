@@ -6,7 +6,10 @@ namespace KitchenProject
 {
     public partial class Form1 : Form
     {
-        FurnitureService fs = new FurnitureService();
+        FileService fs = new FileService();
+        FurnitureCalculateService fcs = new FurnitureCalculateService();
+        List<Furniture> input = new List<Furniture>();
+        Furniture newItem = new Furniture();
         public Form1()
         {
             InitializeComponent();
@@ -15,29 +18,20 @@ namespace KitchenProject
 
         private void button1_Click(object sender, EventArgs e)
         {
-            List<Furniture> furnitures = new List<Furniture>();
-            Furniture newItem = new Furniture();
+            
             newItem.OrderName = orderNameBox.Text.ToString();
             newItem.Name = FurnitureNameBox.Text.ToString();
+            newItem.Type = TypesBox.Text.ToString();
             newItem.Height = double.Parse(HeightBox.Text.ToString());
             newItem.Width = double.Parse(WidthBox.Text.ToString());
             newItem.Depth = double.Parse(DepthBox.Text.ToString());
-            furnitures.Add(newItem);
+            input.Add(newItem);
 
-            fs.SaveInFile(orderNameBox.Text.ToString(), furnitures);
+            fs.SaveInFile(orderNameBox.Text.ToString(), input);
 
-            List<Furniture> furniture = fs.ReadFile(orderNameBox.Text.ToString());
-            dataGridView1.DataSource = furniture;
+            
 
-            foreach (var item in furniture)
-            {
-                StringBuilder sb = new StringBuilder(OutputBox.Text);
-                sb.AppendLine("dsadsaasda " + item.Name + item.Height + item.Width + item.Depth);
-                
 
-                OutputBox.Text = sb.ToString();
-                
-            }
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -58,6 +52,20 @@ namespace KitchenProject
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void ShowButton_Click(object sender, EventArgs e)
+        {
+            newItem.Type = TypesBox.Text.ToString();
+            List<Furniture> furnitures = fs.ReadFile(orderNameBox.Text.ToString());
+            dataGridView1.DataSource = furnitures;
+
+            OutputBox.Text = fcs.ListInfo(furnitures);
         }
     }
 }
