@@ -26,7 +26,7 @@ namespace KitchenProject.Services
         public string BasicCloset(Furniture item)
         {
             StringBuilder sb = new StringBuilder();
-            sb.AppendLine(item.Name);
+            sb.AppendLine(item.Name+" - "+item.Type);
             string output = "Дъно - "+item.Width.ToString()+"*/"+ item.Depth.ToString() + "** - 1бр.";
             sb.AppendLine(output) ;
             output = "Страница - " + (item.Height - 18).ToString() + "/" + item.Width.ToString() + " - 2бр.";

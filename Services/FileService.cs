@@ -59,5 +59,16 @@ namespace KitchenProject.Services
                 }
             }
         }
+
+        public List<string> getExistingOrdersNames()
+        {
+            var list = new List<string>();
+            List<string>filesNames = Directory.GetFiles(Environment.CurrentDirectory + "/Поръчки").ToList();
+            foreach(var file in filesNames)
+            {
+                list.Add(Path.GetFileNameWithoutExtension(file));
+            }
+            return list;
+        }
     }
 }

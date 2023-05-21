@@ -1,5 +1,6 @@
 using KitchenProject.Models;
 using KitchenProject.Services;
+using System.Security.AccessControl;
 using System.Text;
 
 namespace KitchenProject
@@ -8,17 +9,19 @@ namespace KitchenProject
     {
         FileService fs = new FileService();
         FurnitureCalculateService fcs = new FurnitureCalculateService();
-        List<Furniture> input = new List<Furniture>();
-        Furniture newItem = new Furniture();
         public Form1()
         {
+            createFolderOrdeers();
             InitializeComponent();
+            addExistingOrders();
 
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            
+
+            List<Furniture> input = new List<Furniture>();
+            Furniture newItem = new Furniture();
             newItem.OrderName = orderNameBox.Text.ToString();
             newItem.Name = FurnitureNameBox.Text.ToString();
             newItem.Type = TypesBox.Text.ToString();
@@ -29,9 +32,30 @@ namespace KitchenProject
 
             fs.SaveInFile(orderNameBox.Text.ToString(), input);
 
-            
+            List<Furniture> furnitures = fs.ReadFile(orderNameBox.Text.ToString());
+            dataGridView1.DataSource = furnitures;
 
+            OutputBox.Text = fcs.ListInfo(furnitures);
+        }
+        private void addExistingOrders()
+        {
+            var orders = fs.getExistingOrdersNames();
 
+            foreach (var order in orders)
+            {
+                orderNameBox.Items.Add(order);
+            }
+        }
+
+        private void createFolderOrdeers()
+        {
+            string projectPath = Directory.GetCurrentDirectory();
+            string folderName = Path.Combine(projectPath, "Поръчки");
+            if (!Directory.Exists(folderName))
+            {
+                System.IO.Directory.CreateDirectory(folderName);
+
+            }
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -61,11 +85,17 @@ namespace KitchenProject
 
         private void ShowButton_Click(object sender, EventArgs e)
         {
+            Furniture newItem = new Furniture();
             newItem.Type = TypesBox.Text.ToString();
             List<Furniture> furnitures = fs.ReadFile(orderNameBox.Text.ToString());
             dataGridView1.DataSource = furnitures;
 
             OutputBox.Text = fcs.ListInfo(furnitures);
+        }
+
+        private void orderNameBox_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
