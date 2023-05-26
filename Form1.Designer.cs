@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             EnterButton = new Button();
             dataGridView1 = new DataGridView();
             orderNameDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
@@ -54,9 +53,6 @@
             panel1 = new Panel();
             downloadButton = new Button();
             orderNameBox = new ComboBox();
-            printDocument1 = new System.Drawing.Printing.PrintDocument();
-            printBtn = new Button();
-            printPreviewDialog1 = new PrintPreviewDialog();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)furnitureBindingSource).BeginInit();
             panel1.SuspendLayout();
@@ -284,38 +280,12 @@
             orderNameBox.TabIndex = 6;
             orderNameBox.SelectedIndexChanged += orderNameBox_SelectedIndexChanged;
             // 
-            // printDocument1
-            // 
-            printDocument1.PrintPage += printDocument1_PrintPage;
-            // 
-            // printBtn
-            // 
-            printBtn.Location = new Point(15, 468);
-            printBtn.Name = "printBtn";
-            printBtn.Size = new Size(149, 29);
-            printBtn.TabIndex = 20;
-            printBtn.Text = "Принтирай";
-            printBtn.UseVisualStyleBackColor = true;
-            printBtn.Click += printBtn_Click;
-            // 
-            // printPreviewDialog1
-            // 
-            printPreviewDialog1.AutoScrollMargin = new Size(0, 0);
-            printPreviewDialog1.AutoScrollMinSize = new Size(0, 0);
-            printPreviewDialog1.ClientSize = new Size(400, 300);
-            printPreviewDialog1.Enabled = true;
-            printPreviewDialog1.Icon = (Icon)resources.GetObject("printPreviewDialog1.Icon");
-            printPreviewDialog1.Name = "printPreviewDialog1";
-            printPreviewDialog1.Visible = false;
-            printPreviewDialog1.Load += printPreviewDialog1_Load;
-            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(12F, 24F);
             AutoScaleMode = AutoScaleMode.Font;
             AutoSizeMode = AutoSizeMode.GrowAndShrink;
             ClientSize = new Size(1453, 685);
-            Controls.Add(printBtn);
             Controls.Add(ShowButton);
             Controls.Add(label6);
             Controls.Add(OutputBox);
@@ -375,8 +345,5 @@
         private Panel panel1;
         private ComboBox orderNameBox;
         private Button downloadButton;
-        private System.Drawing.Printing.PrintDocument printDocument1;
-        private Button printBtn;
-        private PrintPreviewDialog printPreviewDialog1;
     }
 }

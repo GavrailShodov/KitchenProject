@@ -147,20 +147,14 @@ namespace KitchenProject
         {
 
         }
-        Bitmap bitmap;
 
         private void printBtn_Click(object sender, EventArgs e)
         {
-            if (printPreviewDialog1.ShowDialog() == DialogResult.OK)
-                printDocument1.Print();
         }
 
         private void printDocument1_PrintPage(object sender, System.Drawing.Printing.PrintPageEventArgs e)
         {
-            List<Furniture> furnitures = fs.ReadFile(orderNameBox.Text.ToString());
-
-            //e.Graphics.DrawImage(bitmap,0,0);
-            e.Graphics.DrawString(fcs.ListInfo(furnitures), new Font("Times New Roman", 16, FontStyle.Bold), Brushes.Black, new PointF(100, 100));
+            
         }
 
         private void printPreviewDialog1_Load(object sender, EventArgs e)
