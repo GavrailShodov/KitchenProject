@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             EnterButton = new Button();
             dataGridView1 = new DataGridView();
             orderNameDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
@@ -51,7 +52,11 @@
             label6 = new Label();
             ShowButton = new Button();
             panel1 = new Panel();
+            downloadButton = new Button();
             orderNameBox = new ComboBox();
+            printDocument1 = new System.Drawing.Printing.PrintDocument();
+            printBtn = new Button();
+            printPreviewDialog1 = new PrintPreviewDialog();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)furnitureBindingSource).BeginInit();
             panel1.SuspendLayout();
@@ -223,7 +228,7 @@
             TypesBox.DropDownStyle = ComboBoxStyle.DropDownList;
             TypesBox.FormattingEnabled = true;
             TypesBox.Items.AddRange(new object[] { "Обикновен шкаф" });
-            TypesBox.Location = new Point(197, 112);
+            TypesBox.Location = new Point(199, 119);
             TypesBox.Margin = new Padding(3, 4, 3, 4);
             TypesBox.Name = "TypesBox";
             TypesBox.Size = new Size(319, 32);
@@ -251,12 +256,24 @@
             // panel1
             // 
             panel1.BackColor = SystemColors.ButtonShadow;
+            panel1.Controls.Add(downloadButton);
             panel1.Controls.Add(orderNameBox);
+            panel1.Controls.Add(TypesBox);
             panel1.Controls.Add(EnterButton);
             panel1.Location = new Point(-2, -2);
             panel1.Name = "panel1";
             panel1.Size = new Size(712, 255);
             panel1.TabIndex = 19;
+            // 
+            // downloadButton
+            // 
+            downloadButton.Location = new Point(550, 94);
+            downloadButton.Name = "downloadButton";
+            downloadButton.Size = new Size(96, 29);
+            downloadButton.TabIndex = 19;
+            downloadButton.Text = "Свали";
+            downloadButton.UseVisualStyleBackColor = true;
+            downloadButton.Click += button1_Click_1;
             // 
             // orderNameBox
             // 
@@ -265,6 +282,32 @@
             orderNameBox.Name = "orderNameBox";
             orderNameBox.Size = new Size(151, 32);
             orderNameBox.TabIndex = 6;
+            orderNameBox.SelectedIndexChanged += orderNameBox_SelectedIndexChanged;
+            // 
+            // printDocument1
+            // 
+            printDocument1.PrintPage += printDocument1_PrintPage;
+            // 
+            // printBtn
+            // 
+            printBtn.Location = new Point(15, 468);
+            printBtn.Name = "printBtn";
+            printBtn.Size = new Size(149, 29);
+            printBtn.TabIndex = 20;
+            printBtn.Text = "Принтирай";
+            printBtn.UseVisualStyleBackColor = true;
+            printBtn.Click += printBtn_Click;
+            // 
+            // printPreviewDialog1
+            // 
+            printPreviewDialog1.AutoScrollMargin = new Size(0, 0);
+            printPreviewDialog1.AutoScrollMinSize = new Size(0, 0);
+            printPreviewDialog1.ClientSize = new Size(400, 300);
+            printPreviewDialog1.Enabled = true;
+            printPreviewDialog1.Icon = (Icon)resources.GetObject("printPreviewDialog1.Icon");
+            printPreviewDialog1.Name = "printPreviewDialog1";
+            printPreviewDialog1.Visible = false;
+            printPreviewDialog1.Load += printPreviewDialog1_Load;
             // 
             // Form1
             // 
@@ -272,9 +315,9 @@
             AutoScaleMode = AutoScaleMode.Font;
             AutoSizeMode = AutoSizeMode.GrowAndShrink;
             ClientSize = new Size(1453, 685);
+            Controls.Add(printBtn);
             Controls.Add(ShowButton);
             Controls.Add(label6);
-            Controls.Add(TypesBox);
             Controls.Add(OutputBox);
             Controls.Add(FurnitureNameBox);
             Controls.Add(label5);
@@ -331,5 +374,9 @@
         private Button ShowButton;
         private Panel panel1;
         private ComboBox orderNameBox;
+        private Button downloadButton;
+        private System.Drawing.Printing.PrintDocument printDocument1;
+        private Button printBtn;
+        private PrintPreviewDialog printPreviewDialog1;
     }
 }

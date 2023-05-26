@@ -15,6 +15,7 @@ namespace KitchenProject
             InitializeComponent();
             addExistingOrders();
 
+
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -28,9 +29,38 @@ namespace KitchenProject
             newItem.Height = double.Parse(HeightBox.Text.ToString());
             newItem.Width = double.Parse(WidthBox.Text.ToString());
             newItem.Depth = double.Parse(DepthBox.Text.ToString());
-            input.Add(newItem);
 
-            fs.SaveInFile(orderNameBox.Text.ToString(), input);
+            var scvPath = Path.Combine(Environment.CurrentDirectory + "/Поръчки", orderNameBox.Text.ToString() + $".scv");
+            if (!File.Exists(scvPath))
+            {
+                input.Add(newItem);
+                fs.SaveInFile(orderNameBox.Text.ToString(), input);
+            }
+            else
+            {
+
+                List<Furniture> Items = fs.ReadFile(orderNameBox.Text.ToString());
+                Furniture item = Items.FirstOrDefault(x => x.Name == FurnitureNameBox.Text.ToString() && x.Type == TypesBox.Text.ToString());
+                if (item == null)
+                {
+                    input.Add(newItem);
+                    fs.SaveInFile(orderNameBox.Text.ToString(), input);
+                }
+                else
+                {
+                    MessageBox.Show(
+                         "Не може да имаш две неща с еднакво име и еднакъв тип. Кво пак не разбра. :)",
+                         "Пак съм аз",
+                         MessageBoxButtons.OK,
+                         MessageBoxIcon.Warning
+                    );
+                }
+
+            }
+
+
+
+
 
             List<Furniture> furnitures = fs.ReadFile(orderNameBox.Text.ToString());
             dataGridView1.DataSource = furnitures;
@@ -95,6 +125,47 @@ namespace KitchenProject
 
         private void orderNameBox_TextChanged(object sender, EventArgs e)
         {
+
+        }
+
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+            List<Furniture> furnitures = fs.ReadFile(orderNameBox.Text.ToString());
+            fs.ExportOrder(furnitures, fcs, orderNameBox.Text.ToString());
+        }
+
+        private void orderNameBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+            List<Furniture> furnitures = fs.ReadFile(orderNameBox.Text.ToString());
+            dataGridView1.DataSource = furnitures;
+
+            OutputBox.Text = fcs.ListInfo(furnitures);
+        }
+
+        private void printPreviewControl1_Click(object sender, EventArgs e)
+        {
+
+        }
+        Bitmap bitmap;
+
+        private void printBtn_Click(object sender, EventArgs e)
+        {
+            if (printPreviewDialog1.ShowDialog() == DialogResult.OK)
+                printDocument1.Print();
+        }
+
+        private void printDocument1_PrintPage(object sender, System.Drawing.Printing.PrintPageEventArgs e)
+        {
+            List<Furniture> furnitures = fs.ReadFile(orderNameBox.Text.ToString());
+
+            //e.Graphics.DrawImage(bitmap,0,0);
+            e.Graphics.DrawString(fcs.ListInfo(furnitures), new Font("Times New Roman", 16, FontStyle.Bold), Brushes.Black, new PointF(100, 100));
+        }
+
+        private void printPreviewDialog1_Load(object sender, EventArgs e)
+        {
+
 
         }
     }

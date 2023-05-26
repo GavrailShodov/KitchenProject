@@ -70,5 +70,14 @@ namespace KitchenProject.Services
             }
             return list;
         }
+
+        public void ExportOrder(List<Furniture> furnitures,FurnitureCalculateService fcs,string orderName)
+        {
+            string pathDesktop = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
+            string path = Path.Combine(pathDesktop,orderName+ ".txt");
+            using StreamWriter streamWriter = new StreamWriter(path);
+            streamWriter.Write(fcs.ListInfo(furnitures));
+
+        }
     }
 }
