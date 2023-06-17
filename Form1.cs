@@ -9,6 +9,7 @@ namespace KitchenProject
     {
         FileService fs = new FileService();
         FurnitureCalculateService fcs = new FurnitureCalculateService();
+        ExelService exelService = new ExelService();
         public Form1()
         {
             createFolderOrdeers();
@@ -63,7 +64,6 @@ namespace KitchenProject
 
 
             List<Furniture> furnitures = fs.ReadFile(orderNameBox.Text.ToString());
-            dataGridView1.DataSource = furnitures;
 
             OutputBox.Text = fcs.ListInfo(furnitures);
         }
@@ -115,12 +115,9 @@ namespace KitchenProject
 
         private void ShowButton_Click(object sender, EventArgs e)
         {
-            Furniture newItem = new Furniture();
-            newItem.Type = TypesBox.Text.ToString();
-            List<Furniture> furnitures = fs.ReadFile(orderNameBox.Text.ToString());
-            dataGridView1.DataSource = furnitures;
-
-            OutputBox.Text = fcs.ListInfo(furnitures);
+           // Furniture newItem = new Furniture();
+            //newItem.Type = TypesBox.Text.ToString();
+            //List<Furniture> furnitures = fs.ReadFile(orderNameBox.Text.ToString());
         }
 
         private void orderNameBox_TextChanged(object sender, EventArgs e)
@@ -138,7 +135,6 @@ namespace KitchenProject
         {
 
             List<Furniture> furnitures = fs.ReadFile(orderNameBox.Text.ToString());
-            dataGridView1.DataSource = furnitures;
 
             OutputBox.Text = fcs.ListInfo(furnitures);
         }
@@ -154,13 +150,20 @@ namespace KitchenProject
 
         private void printDocument1_PrintPage(object sender, System.Drawing.Printing.PrintPageEventArgs e)
         {
-            
+
         }
 
         private void printPreviewDialog1_Load(object sender, EventArgs e)
         {
 
 
+        }
+
+        private void button1_Click_2(object sender, EventArgs e)
+        {
+            List<Furniture> furnitures = fs.ReadFile(orderNameBox.Text.ToString());
+
+            exelService.WriteExelFile(fcs.Materials(furnitures), orderNameBox.Text.ToString());
         }
     }
 }

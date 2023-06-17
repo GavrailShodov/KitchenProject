@@ -30,12 +30,6 @@
         {
             components = new System.ComponentModel.Container();
             EnterButton = new Button();
-            dataGridView1 = new DataGridView();
-            orderNameDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-            nameDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-            heightDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-            widthDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-            depthDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
             furnitureBindingSource = new BindingSource(components);
             HeightBox = new TextBox();
             WidthBox = new TextBox();
@@ -53,7 +47,7 @@
             panel1 = new Panel();
             downloadButton = new Button();
             orderNameBox = new ComboBox();
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
+            button1 = new Button();
             ((System.ComponentModel.ISupportInitialize)furnitureBindingSource).BeginInit();
             panel1.SuspendLayout();
             SuspendLayout();
@@ -68,62 +62,6 @@
             EnterButton.Text = "Добави";
             EnterButton.UseVisualStyleBackColor = true;
             EnterButton.Click += button1_Click;
-            // 
-            // dataGridView1
-            // 
-            dataGridView1.AllowUserToOrderColumns = true;
-            dataGridView1.AutoGenerateColumns = false;
-            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Columns.AddRange(new DataGridViewColumn[] { orderNameDataGridViewTextBoxColumn, nameDataGridViewTextBoxColumn, heightDataGridViewTextBoxColumn, widthDataGridViewTextBoxColumn, depthDataGridViewTextBoxColumn });
-            dataGridView1.DataSource = furnitureBindingSource;
-            dataGridView1.Location = new Point(15, 258);
-            dataGridView1.Margin = new Padding(3, 2, 3, 2);
-            dataGridView1.Name = "dataGridView1";
-            dataGridView1.RowHeadersWidth = 51;
-            dataGridView1.RowTemplate.Height = 29;
-            dataGridView1.Size = new Size(695, 188);
-            dataGridView1.TabIndex = 1;
-            dataGridView1.CellContentClick += dataGridView1_CellContentClick;
-            // 
-            // orderNameDataGridViewTextBoxColumn
-            // 
-            orderNameDataGridViewTextBoxColumn.DataPropertyName = "OrderName";
-            orderNameDataGridViewTextBoxColumn.HeaderText = "OrderName";
-            orderNameDataGridViewTextBoxColumn.MinimumWidth = 6;
-            orderNameDataGridViewTextBoxColumn.Name = "orderNameDataGridViewTextBoxColumn";
-            orderNameDataGridViewTextBoxColumn.Width = 125;
-            // 
-            // nameDataGridViewTextBoxColumn
-            // 
-            nameDataGridViewTextBoxColumn.DataPropertyName = "Name";
-            nameDataGridViewTextBoxColumn.HeaderText = "Name";
-            nameDataGridViewTextBoxColumn.MinimumWidth = 6;
-            nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
-            nameDataGridViewTextBoxColumn.Width = 125;
-            // 
-            // heightDataGridViewTextBoxColumn
-            // 
-            heightDataGridViewTextBoxColumn.DataPropertyName = "Height";
-            heightDataGridViewTextBoxColumn.HeaderText = "Height";
-            heightDataGridViewTextBoxColumn.MinimumWidth = 6;
-            heightDataGridViewTextBoxColumn.Name = "heightDataGridViewTextBoxColumn";
-            heightDataGridViewTextBoxColumn.Width = 125;
-            // 
-            // widthDataGridViewTextBoxColumn
-            // 
-            widthDataGridViewTextBoxColumn.DataPropertyName = "Width";
-            widthDataGridViewTextBoxColumn.HeaderText = "Width";
-            widthDataGridViewTextBoxColumn.MinimumWidth = 6;
-            widthDataGridViewTextBoxColumn.Name = "widthDataGridViewTextBoxColumn";
-            widthDataGridViewTextBoxColumn.Width = 125;
-            // 
-            // depthDataGridViewTextBoxColumn
-            // 
-            depthDataGridViewTextBoxColumn.DataPropertyName = "Depth";
-            depthDataGridViewTextBoxColumn.HeaderText = "Depth";
-            depthDataGridViewTextBoxColumn.MinimumWidth = 6;
-            depthDataGridViewTextBoxColumn.Name = "depthDataGridViewTextBoxColumn";
-            depthDataGridViewTextBoxColumn.Width = 125;
             // 
             // furnitureBindingSource
             // 
@@ -224,7 +162,7 @@
             TypesBox.DropDownStyle = ComboBoxStyle.DropDownList;
             TypesBox.FormattingEnabled = true;
             TypesBox.Items.AddRange(new object[] { "Обикновен шкаф" });
-            TypesBox.Location = new Point(199, 119);
+            TypesBox.Location = new Point(199, 114);
             TypesBox.Margin = new Padding(3, 4, 3, 4);
             TypesBox.Name = "TypesBox";
             TypesBox.Size = new Size(319, 32);
@@ -252,22 +190,23 @@
             // panel1
             // 
             panel1.BackColor = SystemColors.ButtonShadow;
+            panel1.Controls.Add(button1);
             panel1.Controls.Add(downloadButton);
             panel1.Controls.Add(orderNameBox);
             panel1.Controls.Add(TypesBox);
             panel1.Controls.Add(EnterButton);
             panel1.Location = new Point(-2, -2);
             panel1.Name = "panel1";
-            panel1.Size = new Size(712, 255);
+            panel1.Size = new Size(742, 518);
             panel1.TabIndex = 19;
             // 
             // downloadButton
             // 
-            downloadButton.Location = new Point(550, 94);
+            downloadButton.Location = new Point(14, 473);
             downloadButton.Name = "downloadButton";
-            downloadButton.Size = new Size(96, 29);
+            downloadButton.Size = new Size(188, 29);
             downloadButton.TabIndex = 19;
-            downloadButton.Text = "Свали";
+            downloadButton.Text = "Свали поръчка";
             downloadButton.UseVisualStyleBackColor = true;
             downloadButton.Click += button1_Click_1;
             // 
@@ -279,6 +218,18 @@
             orderNameBox.Size = new Size(151, 32);
             orderNameBox.TabIndex = 6;
             orderNameBox.SelectedIndexChanged += orderNameBox_SelectedIndexChanged;
+            // 
+            // button1
+            // 
+            button1.BackgroundImageLayout = ImageLayout.Center;
+            button1.Location = new Point(232, 471);
+            button1.Margin = new Padding(3, 2, 3, 2);
+            button1.Name = "button1";
+            button1.Size = new Size(216, 33);
+            button1.TabIndex = 20;
+            button1.Text = "Свали материали";
+            button1.UseVisualStyleBackColor = true;
+            button1.Click += button1_Click_2;
             // 
             // Form1
             // 
@@ -298,14 +249,12 @@
             Controls.Add(DepthBox);
             Controls.Add(WidthBox);
             Controls.Add(HeightBox);
-            Controls.Add(dataGridView1);
             Controls.Add(panel1);
             Font = new Font("Microsoft Sans Serif", 11.25F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point);
             Margin = new Padding(3, 2, 3, 2);
             Name = "Form1";
             Text = "Form1";
             Load += Form1_Load;
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             ((System.ComponentModel.ISupportInitialize)furnitureBindingSource).EndInit();
             panel1.ResumeLayout(false);
             ResumeLayout(false);
@@ -315,7 +264,6 @@
         #endregion
 
         private Button EnterButton;
-        private DataGridView dataGridView1;
         private DataGridViewTextBoxColumn xDataGridViewTextBoxColumn;
         private DataGridViewTextBoxColumn yDataGridViewTextBoxColumn;
         private DataGridViewTextBoxColumn zDataGridViewTextBoxColumn;
@@ -334,16 +282,12 @@
         private ComboBox TypesBox;
         private Label label6;
         public TextBox OutputBox;
-        private DataGridViewTextBoxColumn orderNameDataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn nameDataGridViewTextBoxColumn;
         private DataGridViewTextBoxColumn typeDataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn heightDataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn widthDataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn depthDataGridViewTextBoxColumn;
         private BindingSource furnitureBindingSource;
         private Button ShowButton;
         private Panel panel1;
         private ComboBox orderNameBox;
         private Button downloadButton;
+        private Button button1;
     }
 }
