@@ -15,8 +15,17 @@ namespace KitchenProject
             createFolderOrdeers();
             InitializeComponent();
             addExistingOrders();
+            setDefaultValue();
 
-
+        }
+        private void setDefaultValue()
+        {
+            HeightBox.Text = "0";
+            WidthBox.Text = "0";
+            DepthBox.Text = "0";
+            kantBox.Text = "0";
+            raftoveBox.Text = "0";
+            cokulBox.Text = "0";
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -26,10 +35,15 @@ namespace KitchenProject
             Furniture newItem = new Furniture();
             newItem.OrderName = orderNameBox.Text.ToString();
             newItem.Name = FurnitureNameBox.Text.ToString();
-            newItem.Type = TypesBox.Text.ToString();
+            string type = string.Concat(categoryBox.Text.ToString(), " ", TypesBox.Text.ToString());
+            newItem.Type = type;
             newItem.Height = double.Parse(HeightBox.Text.ToString());
             newItem.Width = double.Parse(WidthBox.Text.ToString());
             newItem.Depth = double.Parse(DepthBox.Text.ToString());
+            newItem.Kant = double.Parse(kantBox.Text.ToString());
+            newItem.Shelfs = double.Parse(raftoveBox.Text.ToString());
+            newItem.cokul = double.Parse(cokulBox.Text.ToString());
+
 
             var scvPath = Path.Combine(Environment.CurrentDirectory + "/Поръчки", orderNameBox.Text.ToString() + $".scv");
             if (!File.Exists(scvPath))
@@ -115,7 +129,7 @@ namespace KitchenProject
 
         private void ShowButton_Click(object sender, EventArgs e)
         {
-           // Furniture newItem = new Furniture();
+            // Furniture newItem = new Furniture();
             //newItem.Type = TypesBox.Text.ToString();
             //List<Furniture> furnitures = fs.ReadFile(orderNameBox.Text.ToString());
         }
@@ -164,6 +178,38 @@ namespace KitchenProject
             List<Furniture> furnitures = fs.ReadFile(orderNameBox.Text.ToString());
 
             exelService.WriteExelFile(fcs.Materials(furnitures), orderNameBox.Text.ToString());
+        }
+
+        private void label7_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void TypesBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void categoryBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            List<string> wardrobes = new List<string> { "Еднокрилен,без крачета", "Обикновен шкаф" };
+            List<string> upbuildings = new List<string> { "за Еднокрилен, без таван" };
+            switch (categoryBox.Text)
+            {
+                case "Гардероб":
+                    TypesBox.Items.Clear();
+                    TypesBox.Items.AddRange(wardrobes.ToArray());
+                    break;
+                case "Надстройкa":
+                    TypesBox.Items.Clear();
+                    TypesBox.Items.AddRange(upbuildings.ToArray());
+                    break;
+            }
+        }
+
+        private void blendaBox_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

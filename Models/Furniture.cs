@@ -14,6 +14,9 @@ namespace KitchenProject.Models
         public double Height { get; set; }
         public double Width { get; set; }
         public double Depth { get; set; }
+        public double Kant { get; set; }
+        public double Shelfs { get; set; }
+        public double cokul { get; set; }
 
     }
 }
